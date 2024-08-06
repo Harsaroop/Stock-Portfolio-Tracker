@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
+import Dashboard from './pages/Dashboard';
+import Portfolio from './pages/Portfolio';
+import Analysis from './pages/Analysis';
+import Settings from './pages/Settings';
+import { CssBaseline } from '@mui/material';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <CssBaseline />
+      <Navbar />
+      <Sidebar />
+      <div style={{ marginLeft: '240px', padding: '20px' }}>
+        <Switch>
+          <Route path="/" exact component={Dashboard} />
+          <Route path="/portfolio" component={Portfolio} />
+          <Route path="/analysis" component={Analysis} />
+          <Route path="/settings" component={Settings} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

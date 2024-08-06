@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Master template for Stock Portfolio Tracker
+
+Resources:
+  VPCStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/bucket-name/vpc.yaml
+
+  EC2Stack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/bucket-name/ec2.yaml
+      Parameters:
+        VpcId: !GetAtt VPCStack.Outputs.VpcId
+
+# ... other stacks
